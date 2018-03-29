@@ -2,6 +2,7 @@
 
 namespace JinWeChat;
 /**
+ * 入口
  * @method static OfficialAccount\Application    officialAccount(array $config)
  **/
 class Factory
