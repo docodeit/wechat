@@ -1,12 +1,32 @@
 <?php
-namespace JinWeChat;
 
-class Factory{
-    public static function make($name,array $args){
-        $namespace = '';
-        return true;
+namespace JinWeChat;
+/**
+ * @method static OfficialAccount\Application    officialAccount(array $config)
+ **/
+class Factory
+{
+    /**
+     * @param $name
+     * @param array $config
+     * @return mixed
+     */
+    public static function make($name, array $config)
+    {
+//        $namespace = 'OfficialAccount';
+        $application = "\\JinWeChat\\{$name}\\Application";
+        return new $application($config);
+
     }
-    public static function __callStatic($name,$args){
-        return self::make($name,...$args);
+
+    /**
+     * @param $name
+     * @param $args
+     * @return mixed
+     */
+    public static function __callStatic($name, $args)
+    {
+        $name = ucwords(str_replace(['-', '_'], ' ', $name));
+        return self::make($name, ...$args);
     }
 }
