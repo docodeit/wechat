@@ -1,4 +1,19 @@
 {
+  "name": "docodeit/wechat",
+  "description": "未认证公众号SDK",
+  "keywords": [
+    "wechat",
+    "weixin",
+    "weixin-sdk",
+    "sdk"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "docodeit",
+      "email": "lqbzdyj@qq.com"
+    }
+  ],
   "require": {
     "pimple/pimple": "^3.2",
     "monolog/monolog": "^1.23"
