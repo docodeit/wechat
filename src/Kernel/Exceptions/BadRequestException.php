@@ -12,10 +12,10 @@
 namespace JinWeChat\Kernel\Exceptions;
 
 /**
- * Class RuntimeException.
+ * Class BadRequestException.
  *
  * @author overtrue <i@overtrue.me>
  */
-class RuntimeException extends Exception
+class BadRequestException extends Exception
 {
 }

@@ -12,10 +12,10 @@
 namespace JinWeChat\Kernel\Exceptions;
 
 /**
- * Class RuntimeException.
+ * Class InvalidConfigException.
  *
  * @author overtrue <i@overtrue.me>
  */
-class RuntimeException extends Exception
+class UnboundServiceException extends Exception
 {
 }

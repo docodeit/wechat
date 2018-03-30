@@ -11,11 +11,6 @@
 
 namespace JinWeChat\Kernel\Exceptions;
 
-/**
- * Class RuntimeException.
- *
- * @author overtrue <i@overtrue.me>
- */
-class RuntimeException extends Exception
+class DecryptException extends Exception
 {
 }

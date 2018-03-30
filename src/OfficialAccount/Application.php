@@ -14,6 +14,8 @@ class Application extends ServiceContainer
      * @var array
      */
     protected $providers = [
+//        Initialization\ServiceProvider::class,
         Login\ServiceProvider::class,
+        Cookies\ServiceProvider::class,
     ];
 }
