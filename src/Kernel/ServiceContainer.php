@@ -6,7 +6,9 @@
 
 namespace JinWeChat\Kernel;
 
+use GuzzleHttp\Cookie\CookieJar;
 use JinWeChat\Kernel\Providers\ConfigServiceProvider;
+use JinWeChat\Kernel\Providers\HttpClientServiceProvider;
 use Pimple\Container;
 
 class ServiceContainer extends Container
@@ -66,6 +68,12 @@ class ServiceContainer extends Container
             'http' => [
                 'timeout' => 5.0,
                 'base_uri' => 'https://mp.weixin.qq.com/cgi-bin/',
+                'proxy'=>'http://localhost:8888',
+                'verify'=>false,
+                'headers'=>[
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
+                ],
+                'cookies' => new CookieJar(false, $this->userConfig['cookies']['cookieJar'])
             ],
         ];
 
@@ -81,6 +89,7 @@ class ServiceContainer extends Container
     {
         return array_merge([
             ConfigServiceProvider::class,
+            HttpClientServiceProvider::class,
         ], $this->providers);
     }
 

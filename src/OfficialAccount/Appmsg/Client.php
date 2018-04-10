@@ -4,7 +4,7 @@
  * Time: 10:36
  */
 
-namespace JinWeChat\OfficialAccount\Initialization;
+namespace JinWeChat\OfficialAccount\Appmsg;
 
 use JinWeChat\Kernel\BaseClient;
 use JinWeChat\Kernel\Contracts\CookiesInterface;
@@ -12,10 +12,10 @@ use JinWeChat\Kernel\ServiceContainer;
 
 class Client extends BaseClient
 {
-    protected $baseUri = 'https://mp.weixin.qq.com/';
+//    protected $baseUri = 'https://mp.weixin.qq.com/';
 
-    public function init()
+    public function list($query)
     {
-        return $this->httpGet('');
+        return $this->httpGet('/cgi-bin/appmsg', $query);
     }
 }

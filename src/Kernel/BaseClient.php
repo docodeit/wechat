@@ -20,6 +20,7 @@ use GuzzleHttp\Middleware;
 use Monolog\Logger;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Cookie\CookieJar;
 
 /**
  * Class BaseClient.
@@ -41,6 +42,13 @@ class BaseClient
      * @var \JinWeChat\Kernel\Contracts\CookiesInterface
      */
     protected $cookies;
+    /**
+     * @var int
+     */
+    protected $token;
+
+    protected $base;
+
 
     /**
      * @var
@@ -56,7 +64,6 @@ class BaseClient
     public function __construct(ServiceContainer $app, CookiesInterface $cookies = null)
     {
         $this->app = $app;
-        $this->cookies = $cookies ?? $this->app['cookies'];
     }
 
     /**
@@ -71,12 +78,10 @@ class BaseClient
      */
     public function httpGet(string $url, array $query = [])
     {
+        $query = array_merge($query,['token'=>$this->token]);
         $data = [
             'query' => $query,
-            'timeout' => 60,
-            'cookies' => $this->cookies,
-            'headers' => ["Referer" => $this->baseUri, "Connection" => "keep-alive"],
-            'allow_redirects' => true];
+        ];
         return $this->request($url, 'GET', $data);
     }
 
@@ -92,12 +97,6 @@ class BaseClient
      */
     public function httpPost(string $url, array $data = [])
     {
-        $data = [
-            'timeout' => 60,
-            'form_params' => $data,
-            'cookies' => $this->cookies,
-            'headers' => ["Referer" => $this->baseUri, "Connection" => "keep-alive"],
-            'allow_redirects' => true];
         return $this->request($url, 'POST', $data);
     }
 
@@ -222,7 +221,7 @@ class BaseClient
     protected function registerHttpMiddlewares()
     {
         // retry
-        $this->pushMiddleware($this->retryMiddleware(), 'retry');
+//        $this->pushMiddleware($this->retryMiddleware(), 'retry');
         // access token
 //        $this->pushMiddleware($this->cookiesMiddleware(), 'cookies');
         // log

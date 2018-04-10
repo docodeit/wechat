@@ -2,6 +2,7 @@
 
 namespace JinWeChat\OfficialAccount;
 
+use Illuminate\Support\Facades\App;
 use JinWeChat\Kernel\ServiceContainer;
 
 /**
@@ -14,8 +15,7 @@ class Application extends ServiceContainer
      * @var array
      */
     protected $providers = [
-//        Initialization\ServiceProvider::class,
-        Login\ServiceProvider::class,
-        Cookies\ServiceProvider::class,
+//        Login\ServiceProvider::class,
+        Appmsg\ServiceProvider::class
     ];
 }

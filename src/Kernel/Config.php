@@ -5,7 +5,7 @@
  */
 namespace JinWeChat\Kernel;
 
-use JinWeChat\Kernel\Support\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * Class Config.
