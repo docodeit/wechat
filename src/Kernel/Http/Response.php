@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class Response.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 class Response extends GuzzleResponse
 {

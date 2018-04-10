@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Trait HasHttpRequests.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 trait HasHttpRequests
 {

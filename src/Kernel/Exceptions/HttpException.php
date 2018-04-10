@@ -16,7 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class HttpException.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 class HttpException extends Exception
 {

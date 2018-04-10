@@ -14,7 +14,7 @@ namespace JinWeChat\Kernel\Exceptions;
 /**
  * Class InvalidArgumentException.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 class InvalidArgumentException extends Exception
 {

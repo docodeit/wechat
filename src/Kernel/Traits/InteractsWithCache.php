@@ -18,7 +18,7 @@ use Symfony\Component\Cache\Simple\FilesystemCache;
 /**
  * Trait InteractsWithCache.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 trait InteractsWithCache
 {

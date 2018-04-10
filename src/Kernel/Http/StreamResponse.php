@@ -17,7 +17,7 @@ use JinWeChat\Kernel\Support\File;
 /**
  * Class StreamResponse.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 class StreamResponse extends Response
 {

@@ -14,7 +14,7 @@ namespace JinWeChat\Kernel\Exceptions;
 /**
  * Class BadRequestException.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 class BadRequestException extends Exception
 {

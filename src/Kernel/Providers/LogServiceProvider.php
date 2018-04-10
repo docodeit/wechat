@@ -18,7 +18,7 @@ use Pimple\ServiceProviderInterface;
 /**
  * Class LoggingServiceProvider.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 class LogServiceProvider implements ServiceProviderInterface
 {

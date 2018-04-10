@@ -20,7 +20,7 @@ use JinWeChat\Kernel\ServiceContainer;
 /**
  * Trait Observable.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 trait Observable
 {

@@ -14,7 +14,7 @@ namespace JinWeChat\Kernel\Exceptions;
 /**
  * Class InvalidConfigException.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 class UnboundServiceException extends Exception
 {

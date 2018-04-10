@@ -21,7 +21,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Trait ResponseCastable.
  *
- * @author overtrue <i@overtrue.me>
+ * @author docodeit <lqbzdyj@qq.com>
  */
 trait ResponseCastable
 {
