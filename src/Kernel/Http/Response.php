@@ -11,9 +11,9 @@
 
 namespace JinWeChat\Kernel\Http;
 
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use JinWeChat\Kernel\Support\Collection;
 use JinWeChat\Kernel\Support\XML;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Psr\Http\Message\ResponseInterface;
 
 /**

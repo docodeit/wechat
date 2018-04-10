@@ -1,14 +1,13 @@
 <?php
 /**
  * Date: 2018/4/2
- * Time: 19:06
+ * Time: 19:06.
  */
 
 namespace JinWeChat\Tests\Kernel\Console;
 
-use JinWeChat\Tests\TestCase;
 use JinWeChat\Kernel\Console\QrCode;
-
+use JinWeChat\Tests\TestCase;
 
 class QrCodeTest extends TestCase
 {

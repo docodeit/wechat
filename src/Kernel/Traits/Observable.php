@@ -149,10 +149,10 @@ trait Observable
         } catch (\Exception $e) {
             if (property_exists($this, 'app') && $this->app instanceof ServiceContainer) {
                 $this->app['logger']->error($e->getCode().': '.$e->getMessage(), [
-                    'code' => $e->getCode(),
+                    'code'    => $e->getCode(),
                     'message' => $e->getMessage(),
-                    'file' => $e->getFile(),
-                    'line' => $e->getLine(),
+                    'file'    => $e->getFile(),
+                    'line'    => $e->getLine(),
                 ]);
             }
         }
@@ -161,9 +161,9 @@ trait Observable
     /**
      * @param $handler
      *
-     * @return \Closure
-     *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidArgumentException
+     *
+     * @return \Closure
      */
     protected function makeClosure($handler)
     {
@@ -198,9 +198,9 @@ trait Observable
      * @param $handler
      * @param $condition
      *
-     * @return array
-     *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidArgumentException
+     *
+     * @return array
      */
     protected function resolveHandlerAndCondition($handler, $condition): array
     {

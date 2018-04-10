@@ -96,9 +96,9 @@ trait HasAttributes
      * @param string $attribute
      * @param mixed  $value
      *
-     * @return $this
-     *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidArgumentException
+     *
+     * @return $this
      */
     public function with($attribute, $value)
     {

@@ -1,7 +1,7 @@
 <?php
 /**
  * Date: 2018/3/29
- * Time: 16:00
+ * Time: 16:00.
  */
 
 namespace JinWeChat\OfficialAccount\Login;
