@@ -11,16 +11,15 @@
 
 namespace JinWeChat\Kernel;
 
-use JinWeChat\Kernel\Contracts\CookiesInterface;
-use JinWeChat\Kernel\Http\Response;
-use JinWeChat\Kernel\Traits\HasHttpRequests;
 use GuzzleHttp\Client;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
+use JinWeChat\Kernel\Contracts\CookiesInterface;
+use JinWeChat\Kernel\Http\Response;
+use JinWeChat\Kernel\Traits\HasHttpRequests;
 use Monolog\Logger;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Cookie\CookieJar;
 
 /**
  * Class BaseClient.
@@ -49,7 +48,6 @@ class BaseClient
 
     protected $base;
 
-
     /**
      * @var
      */
@@ -58,7 +56,7 @@ class BaseClient
     /**
      * BaseClient constructor.
      *
-     * @param \JinWeChat\Kernel\ServiceContainer $app
+     * @param \JinWeChat\Kernel\ServiceContainer                $app
      * @param \JinWeChat\Kernel\Contracts\CookiesInterface|null $cookies
      */
     public function __construct(ServiceContainer $app, CookiesInterface $cookies = null)
@@ -70,18 +68,19 @@ class BaseClient
      * GET request.
      *
      * @param string $url
-     * @param array $query
-     *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @param array  $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
      */
     public function httpGet(string $url, array $query = [])
     {
-        $query = array_merge($query,['token'=>$this->token]);
+        $query = array_merge($query, ['token'=>$this->token]);
         $data = [
             'query' => $query,
         ];
+
         return $this->request($url, 'GET', $data);
     }
 
@@ -89,11 +88,11 @@ class BaseClient
      * POST request.
      *
      * @param string $url
-     * @param array $data
-     *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @param array  $data
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
      */
     public function httpPost(string $url, array $data = [])
     {
@@ -103,13 +102,13 @@ class BaseClient
     /**
      * JSON request.
      *
-     * @param string $url
+     * @param string       $url
      * @param string|array $data
-     * @param array $query
-     *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @param array        $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
      */
     public function httpPostJson(string $url, array $data = [], array $query = [])
     {
@@ -120,13 +119,13 @@ class BaseClient
      * Upload file.
      *
      * @param string $url
-     * @param array $files
-     * @param array $form
-     * @param array $query
-     *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @param array  $files
+     * @param array  $form
+     * @param array  $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
      */
     public function httpUpload(string $url, array $files = [], array $form = [], array $query = [])
     {
@@ -134,7 +133,7 @@ class BaseClient
 
         foreach ($files as $name => $path) {
             $multipart[] = [
-                'name' => $name,
+                'name'     => $name,
                 'contents' => fopen($path, 'r'),
             ];
         }
@@ -169,12 +168,12 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array $options
-     * @param bool $returnRaw
-     *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @param array  $options
+     * @param bool   $returnRaw
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
      */
     public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
     {
@@ -190,11 +189,11 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array $options
-     *
-     * @return \JinWeChat\Kernel\Http\Response
+     * @param array  $options
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return \JinWeChat\Kernel\Http\Response
      */
     public function requestRaw(string $url, string $method = 'GET', array $options = [])
     {

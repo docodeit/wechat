@@ -1,7 +1,7 @@
 <?php
 /**
  * Date: 2018/3/29
- * Time: 14:15
+ * Time: 14:15.
  */
 
 namespace JinWeChat\Kernel\Providers;

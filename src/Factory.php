@@ -1,8 +1,10 @@
 <?php
 
 namespace JinWeChat;
+
 /**
- * 入口
+ * 入口.
+ *
  * @method static OfficialAccount\Application    officialAccount(array $config)
  **/
 class Factory
@@ -10,24 +12,27 @@ class Factory
     /**
      * @param $name
      * @param array $config
+     *
      * @return mixed
      */
     public static function make($name, array $config)
     {
 //        $namespace = 'OfficialAccount';
         $application = "\\JinWeChat\\{$name}\\Application";
-        return new $application($config);
 
+        return new $application($config);
     }
 
     /**
      * @param $name
      * @param $args
+     *
      * @return mixed
      */
     public static function __callStatic($name, $args)
     {
         $name = ucwords(str_replace(['-', '_'], ' ', $name));
+
         return self::make($name, ...$args);
     }
 }

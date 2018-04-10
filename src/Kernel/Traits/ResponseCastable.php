@@ -29,9 +29,9 @@ trait ResponseCastable
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string|null                         $type
      *
-     * @return array|\JinWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return array|\JinWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      */
     protected function castResponseToType(ResponseInterface $response, $type = null)
     {
@@ -63,10 +63,10 @@ trait ResponseCastable
      * @param mixed       $response
      * @param string|null $type
      *
-     * @return array|\JinWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidArgumentException
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     *
+     * @return array|\JinWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      */
     protected function detectAndCastResponseToType($response, $type = null)
     {
