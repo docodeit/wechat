@@ -1,7 +1,12 @@
 <?php
-/**
- * Date: 2018/3/29
- * Time: 16:00.
+
+/*
+ * This file is part of the docodeit/wechat.
+ *
+ * (c) docodeit <lqbzdyj@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace JinWeChat\OfficialAccount\Appmsg;
