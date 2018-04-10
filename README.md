@@ -5,4 +5,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/docodeit/wechat/badges/build.png?b=master)](https://scrutinizer-ci.com/g/docodeit/wechat/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/docodeit/wechat/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![Build Status](https://travis-ci.org/docodeit/wechat.svg?branch=master)](https://travis-ci.org/docodeit/wechat)
-[![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/version)](https://packagist.org/packages/phpunit/phpunit)
+[![Latest Stable Version](https://poser.pugx.org/docodeit/wechat/version)](https://packagist.org/packages/docodeit/wechat)
+[![Latest Unstable Version](https://poser.pugx.org/docodeit/wechat/v/unstable)](//packagist.org/packages/docodeit/wechat)
+[![License](https://poser.pugx.org/docodeit/wechat/license)](https://packagist.org/packages/docodeit/wechat)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdocodeit%2Fwechat.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdocodeit%2Fwechat?ref=badge_shield)
