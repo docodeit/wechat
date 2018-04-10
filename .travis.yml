@@ -10,7 +10,7 @@ before_script:
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --access-token=$scrutinizer-token --format=php-clover ./build/logs/clover.xml
+  - php ocular.phar code-coverage:upload --access-token=scrutinizer-token --format=php-clover ./build/logs/clover.xml
 
 script: ./vendor/bin/phpunit --configuration ./phpunit.xml --coverage-text --coverage-clover ./build/logs/clover.xml
 
