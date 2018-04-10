@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the overtrue/wechat.
+ * This file is part of the docodeit/wechat.
  *
- * (c) overtrue <i@overtrue.me>
+ * (c) docodeit <lqbzdyj@qq.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
