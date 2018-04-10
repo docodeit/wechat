@@ -14,8 +14,11 @@ namespace JinWeChat\Kernel\Console;
 class Console
 {
     const INFO = 'INFO';
+
     const WARNING = 'WARNING';
+
     const ERROR = 'ERROR';
+
     const MESSAGE = 'MESSAGE';
 
     protected $app;

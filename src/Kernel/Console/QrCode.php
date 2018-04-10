@@ -44,7 +44,7 @@ class QrCode extends Console
         $output->write("\n");
         foreach ($text as $line) {
             $output->write($pxMap[0]);
-            for ($i = 0; $i < $length; $i++) {
+            for ($i = 0; $i < $length; ++$i) {
                 $type = substr($line, $i, 1);
                 $output->write($pxMap[$type]);
             }

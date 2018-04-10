@@ -41,6 +41,7 @@ class BaseClient
      * @var \JinWeChat\Kernel\Contracts\CookiesInterface
      */
     protected $cookies;
+
     /**
      * @var int
      */
@@ -76,7 +77,7 @@ class BaseClient
      */
     public function httpGet(string $url, array $query = [])
     {
-        $query = array_merge($query, ['token'=>$this->token]);
+        $query = array_merge($query, ['token' => $this->token]);
         $data = [
             'query' => $query,
         ];
@@ -133,7 +134,7 @@ class BaseClient
 
         foreach ($files as $name => $path) {
             $multipart[] = [
-                'name'     => $name,
+                'name' => $name,
                 'contents' => fopen($path, 'r'),
             ];
         }
