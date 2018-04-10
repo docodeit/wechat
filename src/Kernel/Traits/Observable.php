@@ -149,10 +149,10 @@ trait Observable
         } catch (\Exception $e) {
             if (property_exists($this, 'app') && $this->app instanceof ServiceContainer) {
                 $this->app['logger']->error($e->getCode().': '.$e->getMessage(), [
-                    'code'    => $e->getCode(),
+                    'code' => $e->getCode(),
                     'message' => $e->getMessage(),
-                    'file'    => $e->getFile(),
-                    'line'    => $e->getLine(),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
                 ]);
             }
         }

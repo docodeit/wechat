@@ -27,13 +27,13 @@ class Client extends BaseClient
         $this->init();
         $params = [
             'username' => $this->app['config']['username'],
-            'pwd'      => md5($this->app['config']['password']),
-            'imgcode'  => '',
-            'f'        => 'json',
+            'pwd' => md5($this->app['config']['password']),
+            'imgcode' => '',
+            'f' => 'json',
             'userlang' => 'zh_CN',
-            'token'    => '',
-            'lang'     => 'zh_CN',
-            'ajax'     => '1',
+            'token' => '',
+            'lang' => 'zh_CN',
+            'ajax' => '1',
         ];
 
         return $this->httpPost('cgi-bin/bizlogin?action=startlogin', $params);
