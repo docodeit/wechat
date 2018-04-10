@@ -12,7 +12,7 @@
 namespace JinWeChat;
 
 /**
- * 入口文件
+ * 入口文件.
  *
  * @method static OfficialAccount\Application    officialAccount(array $config)
  **/
