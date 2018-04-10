@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1523352681">
-  <project timestamp="1523352681">
+<coverage generated="1523356316">
+  <project timestamp="1523356316">
     <package name="JinWeChat">
       <file name="D:\gitfiles\aoc\wechat\src/Factory.php">
         <class name="JinWeChat\Factory" namespace="JinWeChat">
