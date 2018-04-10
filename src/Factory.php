@@ -26,7 +26,6 @@ class Factory
      */
     public static function make($name, array $config)
     {
-//        $namespace = 'OfficialAccount';
         $application = "\\JinWeChat\\{$name}\\Application";
 
         return new $application($config);

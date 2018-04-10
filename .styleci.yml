@@ -1,0 +1,7 @@
+preset: symfony
+
+
+enabled:
+  - strict_comparison
+  - strict_param
+  - alpha_ordered_imports
