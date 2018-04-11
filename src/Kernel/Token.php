@@ -1,23 +1,37 @@
 <?php
-/**
- * Date: 2018/4/11
- * Time: 10:51
+
+/*
+ * This file is part of the docodeit/wechat.
+ *
+ * (c) docodeit <lqbzdyj@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
+
 namespace JinWeChat\Kernel;
+
 use JinWeChat\Kernel\Contracts\TokenInterface;
-use Pimple\Container;
-use Psr\Http\Message\RequestInterface;
+use JinWechat\Kernel\Exceptions\HttpException;
 use JinWechat\Kernel\Traits\HasHttpRequests;
 use JinWechat\Kernel\Traits\InteractsWithCache;
-use JinWechat\Kernel\Exceptions\HttpException;
-class Token implements TokenInterface{
+use Pimple\Container;
+use Psr\Http\Message\RequestInterface;
+
+class Token implements TokenInterface
+{
     use HasHttpRequests, InteractsWithCache;
 
     protected $app;
+
     protected $requestMethod = 'GET';
+
     protected $token;
+
     protected $queryName;
+
     protected $safeSeconds = 500;
+
     /**
      * @var string
      */
@@ -27,6 +41,7 @@ class Token implements TokenInterface{
      * @var string
      */
     protected $cachePrefix = 'jinwechat.kernel.token.';
+
     public function __construct(Container $app)
     {
         $this->app = $app;
@@ -46,6 +61,7 @@ class Token implements TokenInterface{
 
         return $token;
     }
+
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
         parse_str($request->getUri()->getQuery(), $query);
@@ -54,10 +70,12 @@ class Token implements TokenInterface{
 
         return $request->withUri($request->getUri()->withQuery($query));
     }
+
     protected function getQuery(): array
     {
         return [$this->queryName ?? $this->token => $this->getToken()[$this->token]];
     }
+
     /**
      * @return string
      */
@@ -65,6 +83,7 @@ class Token implements TokenInterface{
     {
         return $this->cachePrefix.$this->app['config']['username'];
     }
+
     public function requestToken(array $credentials, $toArray = false)
     {
         $response = $this->sendRequest($credentials);

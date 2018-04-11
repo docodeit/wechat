@@ -15,5 +15,4 @@ use JinWeChat\Kernel\BaseClient;
 
 class Client extends BaseClient
 {
-
 }
