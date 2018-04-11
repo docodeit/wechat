@@ -71,7 +71,7 @@ class ServiceContainer extends Container
     {
         $base = [
             'http' => [
-                'timeout' => 5.0,
+                'timeout' => 30,
                 'base_uri' => 'https://mp.weixin.qq.com/cgi-bin/',
                 'proxy' => 'http://localhost:8888',
                 'verify' => false,
