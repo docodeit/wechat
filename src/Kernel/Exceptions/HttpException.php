@@ -26,7 +26,7 @@ class HttpException extends Exception
     public $response;
 
     /**
-     * @var \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @var \Psr\Http\Message\ResponseInterface
      */
     public $formattedResponse;
 

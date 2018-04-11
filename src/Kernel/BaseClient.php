@@ -41,13 +41,15 @@ class BaseClient
      * @var \JinWeChat\Kernel\Contracts\CookiesInterface
      */
     protected $cookies;
+    /**
+     * @var string
+     */
+    protected $referrer;
 
     /**
      * @var int
      */
     protected $token;
-
-    protected $base;
 
     /**
      * @var
@@ -57,59 +59,54 @@ class BaseClient
     /**
      * BaseClient constructor.
      *
-     * @param \JinWeChat\Kernel\ServiceContainer                $app
+     * @param \JinWeChat\Kernel\ServiceContainer $app
      * @param \JinWeChat\Kernel\Contracts\CookiesInterface|null $cookies
      */
     public function __construct(ServiceContainer $app, CookiesInterface $cookies = null)
     {
         $this->app = $app;
+        $this->referrer = $app['config']->get('http.base_uri', 'https://mp.weixin.qq.com/');
     }
 
     /**
      * GET request.
      *
      * @param string $url
-     * @param array  $query
+     * @param array $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function httpGet(string $url, array $query = [])
     {
-        $query = array_merge($query, ['token' => $this->token]);
-        $data = [
-            'query' => $query,
-        ];
-
-        return $this->request($url, 'GET', $data);
+        return $this->request($url, 'GET', $query);
     }
 
     /**
-     * POST request.
-     *
+     * POST request
      * @param string $url
-     * @param array  $data
+     * @param array $data
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function httpPost(string $url, array $data = [])
     {
-        return $this->request($url, 'POST', $data);
+        return $this->request($url, 'POST', ['form_params' => $data]);
     }
 
     /**
      * JSON request.
      *
-     * @param string       $url
+     * @param string $url
      * @param string|array $data
-     * @param array        $query
+     * @param array $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function httpPostJson(string $url, array $data = [], array $query = [])
     {
@@ -120,13 +117,13 @@ class BaseClient
      * Upload file.
      *
      * @param string $url
-     * @param array  $files
-     * @param array  $form
-     * @param array  $query
+     * @param array $files
+     * @param array $form
+     * @param array $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function httpUpload(string $url, array $files = [], array $form = [], array $query = [])
     {
@@ -147,34 +144,14 @@ class BaseClient
     }
 
     /**
-     * @return CookiesInterface
-     */
-    public function getAccessToken(): CookiesInterface
-    {
-        return $this->cookies;
-    }
-
-    /**
-     * @param \JinWeChat\Kernel\Contracts\CookiesInterface $cookies
-     *
-     * @return $this
-     */
-    public function setAccessToken(CookiesInterface $cookies)
-    {
-        $this->cookies = $cookies;
-
-        return $this;
-    }
-
-    /**
      * @param string $url
      * @param string $method
-     * @param array  $options
-     * @param bool   $returnRaw
+     * @param array $options
+     * @param bool $returnRaw
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
     {
@@ -183,6 +160,12 @@ class BaseClient
         }
 
         $response = $this->performRequest($url, $method, $options);
+        //保存Token todo::改为缓存
+        if (preg_match('/cgi-bin\/bizlogin?action=startlogin/',$url,$urlMatch)){
+            if (preg_match('/token=([\d]+)/i', $response['redirect_url'], $match)) {
+                $this->token = $match[1];
+            }
+        }
 
         return $returnRaw ? $response : $this->castResponseToType($response, $this->app->config->get('response_type'));
     }
@@ -190,7 +173,7 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array  $options
+     * @param array $options
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
@@ -220,72 +203,26 @@ class BaseClient
      */
     protected function registerHttpMiddlewares()
     {
-        // retry
-//        $this->pushMiddleware($this->retryMiddleware(), 'retry');
-        // access token
-//        $this->pushMiddleware($this->cookiesMiddleware(), 'cookies');
-        // log
-//        $this->pushMiddleware($this->logMiddleware(), 'log');
+        //referrer
+        $this->pushMiddleware($this->headerMiddleware('Referer', $this->referrer), 'referrer');
     }
 
     /**
-     * Attache access token to request query.
-     *
+     * apply referrer to the request header
+     * @param $header
+     * @param $value
      * @return \Closure
      */
-//    protected function cookiesMiddleware()
-//    {
-//        return function (callable $handler) {
-//            return function (RequestInterface $request, array $options) use ($handler) {
-//                if ($this->cookies) {
-//                    $request = $this->cookies->applyToRequest($request, $options);
-//                }
-//
-//                return $handler($request, $options);
-//            };
-//        };
-//    }
-
-    /**
-     * Log the request.
-     *
-     * @return \Closure
-     */
-    protected function logMiddleware()
+    function headerMiddleware($header, $value)
     {
-        $formatter = new MessageFormatter($this->app['config']['http.log_template'] ?? MessageFormatter::DEBUG);
-
-        return Middleware::log($this->app['logger'], $formatter);
-    }
-
-    /**
-     * Return retry middleware.
-     *
-     * @return \Closure
-     */
-    protected function retryMiddleware()
-    {
-        return Middleware::retry(function (
-            $retries,
-            RequestInterface $request,
-            ResponseInterface $response = null
-        ) {
-            // Limit the number of retries to 2
-            if ($retries < $this->app->config->get('http.retries', 1) && $response && $body = $response->getBody()) {
-                // Retry on server errors
-                $response = json_decode($body, true);
-
-                if (!empty($response['errcode']) && in_array(abs($response['errcode']), [40001, 42001], true)) {
-                    $this->cookies->refresh();
-                    $this->app['logger']->debug('Retrying with refreshed access token.');
-
-                    return true;
-                }
-            }
-
-            return false;
-        }, function () {
-            return abs($this->app->config->get('http.retry_delay', 500));
-        });
+        return function (callable $handler) use ($header, $value) {
+            return function (
+                RequestInterface $request,
+                array $options
+            ) use ($handler, $header, $value) {
+                $request = $request->withHeader($header, $value);
+                return $handler($request, $options);
+            };
+        };
     }
 }

@@ -15,8 +15,6 @@ use JinWeChat\Kernel\BaseClient;
 
 class Client extends BaseClient
 {
-    protected $baseUri = 'https://mp.weixin.qq.com/';
-
     public function init()
     {
         return $this->httpGet('');
@@ -35,7 +33,6 @@ class Client extends BaseClient
             'lang' => 'zh_CN',
             'ajax' => '1',
         ];
-
         return $this->httpPost('cgi-bin/bizlogin?action=startlogin', $params);
     }
 
@@ -47,6 +44,6 @@ class Client extends BaseClient
 
     public function getQrCode()
     {
-        return $this->httpGet('cgi-bin/loginqrcode?action=getqrcode&param=4300&rd=737');
+        return $this->httpGet('cgi-bin/loginqrcode?action=getqrcode&param=4300&rd=855');
     }
 }

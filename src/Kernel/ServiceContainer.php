@@ -72,13 +72,13 @@ class ServiceContainer extends Container
         $base = [
             'http' => [
                 'timeout' => 30,
-                'base_uri' => 'https://mp.weixin.qq.com/cgi-bin/',
+                'base_uri' => 'https://mp.weixin.qq.com/',
                 'proxy' => 'http://localhost:8888',
                 'verify' => false,
                 'headers' => [
                     'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
                 ],
-                'cookies' => new CookieJar(false, $this->userConfig['cookies']['cookieJar']),
+                'cookies' => new CookieJar(false, isset($this->userConfig['cookies']['cookieJar'])?$this->userConfig['cookies']['cookieJar']:[]),
             ],
         ];
 

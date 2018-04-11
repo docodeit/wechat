@@ -15,5 +15,5 @@ use JinWeChat\Kernel\BaseClient;
 
 class Client extends BaseClient
 {
-    protected $baseUri = 'https://mp.weixin.qq.com/';
+
 }

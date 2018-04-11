@@ -100,7 +100,7 @@ trait HasHttpRequests
     /**
      * Add a middleware.
      *
-     * @param callable    $middleware
+     * @param callable $middleware
      * @param null|string $name
      *
      * @return $this
@@ -131,9 +131,9 @@ trait HasHttpRequests
      *
      * @param string $url
      * @param string $method
-     * @param array  $options
+     * @param array $options
      *
-     * @return \Psr\Http\Message\ResponseInterface|\JinWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function request($url, $method = 'GET', $options = []): ResponseInterface
     {

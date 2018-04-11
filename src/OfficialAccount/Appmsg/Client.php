@@ -19,6 +19,6 @@ class Client extends BaseClient
 
     public function list($query)
     {
-        return $this->httpGet('/cgi-bin/appmsg', $query);
+        return $this->httpGet('cgi-bin/appmsg', $query);
     }
 }
