@@ -81,7 +81,7 @@ class Token implements TokenInterface
      */
     protected function getCacheKey()
     {
-        return $this->cachePrefix.$this->app['config']['username'];
+        return $this->cachePrefix . $this->app['config']['username'];
     }
 
     public function requestToken(array $credentials, $toArray = false)
@@ -95,7 +95,7 @@ class Token implements TokenInterface
         $this->baseRefer = $result['redirect_url'];
 
         if (empty($result['redirect_url'])) {
-            throw new HttpException('Request token fail: '.json_encode($result, JSON_UNESCAPED_UNICODE), $response, $formatted);
+            throw new HttpException('Request token fail: ' . json_encode($result, JSON_UNESCAPED_UNICODE), $response, $formatted);
         }
 
         return $toArray ? $result : $formatted;

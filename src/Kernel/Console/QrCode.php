@@ -23,7 +23,6 @@ class QrCode extends Console
      *
      * @param $text
      *
-     * @return bool
      */
     public function show($text)
     {
