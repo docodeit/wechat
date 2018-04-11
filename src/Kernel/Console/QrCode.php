@@ -22,7 +22,6 @@ class QrCode extends Console
      * show qrCode on console.
      *
      * @param $text
-     *
      */
     public function show($text)
     {
