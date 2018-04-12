@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace JinWechat\Kernel\Providers;
+namespace JinWeChat\Kernel\Providers;
 
 use GuzzleHttp\Client;
 use Pimple\Container;

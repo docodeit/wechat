@@ -12,7 +12,7 @@
 namespace JinWeChat\Kernel\Http;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
-use JinWeChat\Kernel\Support\Collection;
+use Illuminate\Support\Collection;
 use JinWeChat\Kernel\Support\XML;
 use Psr\Http\Message\ResponseInterface;
 
@@ -86,7 +86,7 @@ class Response extends GuzzleResponse
     /**
      * Get collection data.
      *
-     * @return \JinWeChat\Kernel\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function toCollection()
     {

@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace JinWechat\Kernel\Contracts;
+namespace JinWeChat\Kernel\Contracts;
 
 use Psr\Http\Message\RequestInterface;
 

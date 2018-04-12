@@ -12,9 +12,9 @@
 namespace JinWeChat\Kernel;
 
 use JinWeChat\Kernel\Contracts\TokenInterface;
-use JinWechat\Kernel\Exceptions\HttpException;
-use JinWechat\Kernel\Traits\HasHttpRequests;
-use JinWechat\Kernel\Traits\InteractsWithCache;
+use JinWeChat\Kernel\Exceptions\HttpException;
+use JinWeChat\Kernel\Traits\HasHttpRequests;
+use JinWeChat\Kernel\Traits\InteractsWithCache;
 use Pimple\Container;
 use Psr\Http\Message\RequestInterface;
 
@@ -40,7 +40,7 @@ class Token implements TokenInterface
     /**
      * @var string
      */
-    protected $cachePrefix = 'jinwechat.kernel.token.';
+    protected $cachePrefix = 'JinWeChat.kernel.token.';
 
     public function __construct(Container $app)
     {
