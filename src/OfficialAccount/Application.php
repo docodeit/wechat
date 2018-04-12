@@ -24,5 +24,6 @@ class Application extends ServiceContainer
     protected $providers = [
         Login\ServiceProvider::class,
         Appmsg\ServiceProvider::class,
+        Users\ServiceProvider::class,
     ];
 }

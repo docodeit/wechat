@@ -12,8 +12,8 @@
 namespace JinWeChat\Kernel\Traits;
 
 use JinWeChat\Kernel\Exceptions\InvalidArgumentException;
-use JinWeChat\Kernel\Support\Arr;
-use JinWeChat\Kernel\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * Trait Attributes.
