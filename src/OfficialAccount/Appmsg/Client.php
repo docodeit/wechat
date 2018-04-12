@@ -16,9 +16,12 @@ use JinWeChat\Kernel\BaseClient;
 class Client extends BaseClient
 {
     /**
-     * 图文素材列表
+     * 图文素材列表.
+     *
      * @param $query
+     *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      */
     public function list($query)

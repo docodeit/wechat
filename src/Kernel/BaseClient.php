@@ -56,7 +56,7 @@ class BaseClient
     /**
      * BaseClient constructor.
      *
-     * @param \JinWeChat\Kernel\ServiceContainer $app
+     * @param \JinWeChat\Kernel\ServiceContainer                $app
      * @param \JinWeChat\Kernel\Contracts\CookiesInterface|null $cookies
      */
     public function __construct(ServiceContainer $app, CookiesInterface $cookies = null)
@@ -70,7 +70,7 @@ class BaseClient
      * GET request.
      *
      * @param string $url
-     * @param array $query
+     * @param array  $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
@@ -85,7 +85,7 @@ class BaseClient
      * POST request.
      *
      * @param string $url
-     * @param array $data
+     * @param array  $data
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
@@ -99,9 +99,9 @@ class BaseClient
     /**
      * JSON request.
      *
-     * @param string $url
+     * @param string       $url
      * @param string|array $data
-     * @param array $query
+     * @param array        $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
@@ -116,9 +116,9 @@ class BaseClient
      * Upload file.
      *
      * @param string $url
-     * @param array $files
-     * @param array $form
-     * @param array $query
+     * @param array  $files
+     * @param array  $form
+     * @param array  $query
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
@@ -145,8 +145,8 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array $options
-     * @param bool $returnRaw
+     * @param array  $options
+     * @param bool   $returnRaw
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
@@ -175,7 +175,7 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array $options
+     * @param array  $options
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      *
