@@ -24,7 +24,9 @@ class StreamResponse extends Response
     /**
      * @param string $directory
      * @param string $filename
+     *
      * @return string
+     *
      * @throws InvalidArgumentException
      */
     public function save(string $directory, string $filename = '')
@@ -55,7 +57,7 @@ class StreamResponse extends Response
             $filename .= File::getStreamExt($contents);
         }
 
-        file_put_contents($directory . '/' . $filename, $contents);
+        file_put_contents($directory.'/'.$filename, $contents);
 
         return $filename;
     }
@@ -63,7 +65,9 @@ class StreamResponse extends Response
     /**
      * @param string $directory
      * @param string $filename
+     *
      * @return bool|int
+     *
      * @throws InvalidArgumentException
      */
     public function saveAs(string $directory, string $filename)
