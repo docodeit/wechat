@@ -26,16 +26,16 @@ class Client extends BaseClient
     public function list($begin = 0, $count = 10)
     {
         $query = [
-            'query' =>
-                ['type' => '10',
-                    'action' => 'list',
-                    'begin' => $begin,
-                    'count' => $count,
-                    'f' => 'json',
-                    'lang' => 'zh_CN',
-                    'ajax' => '1',
-                    'random' => $this->getMillisecond()
-                ]];
+            'query' => ['type' => '10',
+                'action' => 'list',
+                'begin' => $begin,
+                'count' => $count,
+                'f' => 'json',
+                'lang' => 'zh_CN',
+                'ajax' => '1',
+                'random' => $this->getMillisecond(),
+            ],];
+
         return $this->httpGet('cgi-bin/appmsg', $query);
     }
 }
