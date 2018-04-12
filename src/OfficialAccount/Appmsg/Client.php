@@ -15,8 +15,12 @@ use JinWeChat\Kernel\BaseClient;
 
 class Client extends BaseClient
 {
-//    protected $baseUri = 'https://mp.weixin.qq.com/';
-
+    /**
+     * 图文素材列表
+     * @param $query
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
+     */
     public function list($query)
     {
         return $this->httpGet('cgi-bin/appmsg', $query);
