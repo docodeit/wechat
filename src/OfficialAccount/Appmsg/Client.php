@@ -16,9 +16,11 @@ use JinWeChat\Kernel\BaseClient;
 class Client extends BaseClient
 {
     /**
-     * 图文素材列表
+     * 图文素材列表.
+     *
      * @param $begin
      * @param $count
+     *
      * @return \Psr\Http\Message\ResponseInterface
      *
      * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
@@ -34,7 +36,7 @@ class Client extends BaseClient
                 'lang' => 'zh_CN',
                 'ajax' => '1',
                 'random' => $this->getMillisecond(),
-            ],];
+            ], ];
 
         return $this->httpGet('cgi-bin/appmsg', $query);
     }
