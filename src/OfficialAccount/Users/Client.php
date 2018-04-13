@@ -17,9 +17,12 @@ class Client extends BaseClient
 {
     /**
      * 用户管理列表.
+     *
      * @param int $offset
      * @param int $limit
+     *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      */
     public function list($offset = 0, $limit = 10)
     {
@@ -32,8 +35,9 @@ class Client extends BaseClient
                 'lang' => 'zh_CN',
                 'ajax' => '1',
                 'random' => $this->getMillisecond(),
-            ]
+            ],
         ];
+
         return $this->httpGet('cgi-bin/user_tag', $query);
     }
 }
