@@ -11,16 +11,16 @@
 
 namespace JinWeChat\Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
 use JinWeChat\Kernel\ServiceContainer;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
     /**
      * Create API Client mock object.
      *
-     * @param string $name
-     * @param array|string $methods
+     * @param string                                  $name
+     * @param array|string                            $methods
      * @param \JinWeChat\Kernel\ServiceContainer|null $app
      *
      * @return \Mockery\Mock
@@ -30,12 +30,12 @@ class TestCase extends BaseTestCase
         $methods = implode(',', array_merge([
             'httpGet', 'httpPost', 'httpPostJson', 'httpUpload',
             'request', 'requestRaw', 'registerMiddlewares',
-        ], (array)$methods));
+        ], (array) $methods));
 
         $client = \Mockery::mock(
-            $name . "[{$methods}]",
+            $name."[{$methods}]",
             [
-                $app ?? \Mockery::mock(ServiceContainer::class)
+                $app ?? \Mockery::mock(ServiceContainer::class),
             ]
         )->shouldAllowMockingProtectedMethods();
         $client->allows()->registerHttpMiddlewares()->andReturnNull();
