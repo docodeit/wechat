@@ -18,8 +18,8 @@ class QrCodeTest extends TestCase
 {
     public function testShow()
     {
-        $qr = new QrCode();
-        $qr->show('https://login.weixin.qq.com/qrcode/QfB295ZlVQ==');
+        $qrcode = new QrCode();
+        $qrcode->show('https://login.weixin.qq.com/qrcode/QfB295ZlVQ==');
         $this->assertTrue(true);
     }
 }
