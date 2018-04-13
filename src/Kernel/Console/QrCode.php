@@ -25,14 +25,11 @@ class QrCode extends Console
      */
     public function show($text)
     {
-//        if (!array_get($this->config, 'qrcode', true)) {
-//            return false;
-//        }
         $output = new ConsoleOutput();
         static::initQrcodeStyle($output);
 
-//        $pxMap[0] = Console::isWin() ? '<whitec>mm</whitec>' : '<whitec>  </whitec>';
-        $pxMap[0] = true ? '<whitec>mm</whitec>' : '<whitec>  </whitec>';
+        $pxMap[0] = Console::isWin() ? '<whitec>mm</whitec>' : '<whitec>  </whitec>';
+//        $pxMap[0] = true ? '<whitec>mm</whitec>' : '<whitec>  </whitec>';
         $pxMap[1] = '<blackc>  </blackc>';
 
         $text = QrCodeConsole::text($text);

@@ -20,7 +20,6 @@ class Client extends BaseClient
      * @param int $offset
      * @param int $limit
      * @return \Psr\Http\Message\ResponseInterface
-     * @throws \JinWeChat\Kernel\Exceptions\InvalidConfigException
      */
     public function list($offset = 0, $limit = 10)
     {

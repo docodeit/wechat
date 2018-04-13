@@ -22,8 +22,9 @@ class Application extends ServiceContainer
      * @var array
      */
     protected $providers = [
-        Login\ServiceProvider::class,
-        Appmsg\ServiceProvider::class,
-        Users\ServiceProvider::class,
+        Mass\ServiceProvider::class,
+//        Login\ServiceProvider::class,
+//        Appmsg\ServiceProvider::class,
+//        Users\ServiceProvider::class,
     ];
 }

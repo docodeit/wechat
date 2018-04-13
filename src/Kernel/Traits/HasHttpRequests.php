@@ -23,8 +23,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 trait HasHttpRequests
 {
-    use ResponseCastable;
-
     /**
      * @var \GuzzleHttp\ClientInterface
      */
