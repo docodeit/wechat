@@ -22,7 +22,6 @@ class Client extends BaseClient
      * @param int $limit
      *
      * @return \Psr\Http\Message\ResponseInterface
-     *
      */
     public function list($offset = 0, $limit = 10)
     {

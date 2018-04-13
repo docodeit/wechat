@@ -18,7 +18,8 @@ class Client extends BaseClient
 {
     /**
      * 获取msgid
-     * 通过页面抓取，正则匹配
+     * 通过页面抓取，正则匹配.
+     *
      * @return string
      */
     public function msgid()
@@ -26,8 +27,8 @@ class Client extends BaseClient
         $query = [
             'query' => [
                 't' => 'mass/send',
-                'lang' => 'zh_CN'
-            ]
+                'lang' => 'zh_CN',
+            ],
         ];
         $url = 'cgi-bin/masssendpage';
         $res = $this->httpGet($url, $query);
@@ -36,11 +37,12 @@ class Client extends BaseClient
         if ($matchRes) {
             $operation_seq = $match[1];
         }
+
         return $operation_seq;
     }
 
     /**
-     * 获取ticket
+     * 获取ticket.
      */
     public function ticket()
     {
@@ -50,7 +52,7 @@ class Client extends BaseClient
             'f' => 'json',
             'ajax' => '1',
             'random' => $this->getMillisecond(),
-            'action' => 'get_ticket'
+            'action' => 'get_ticket',
         ];
         $url = 'misc/safeassistant?lang=zh_CN';
         $res = $this->httpPost($url, $options);
@@ -60,12 +62,15 @@ class Client extends BaseClient
                 $ticket = $json->ticket;
             }
         }
+
         return $ticket;
     }
 
     /**
-     * 获取uuid
+     * 获取uuid.
+     *
      * @param $ticket
+     *
      * @return string|bool
      */
     public function uuid($ticket)
@@ -79,7 +84,7 @@ class Client extends BaseClient
             'state' => '0',
             'login_type' => 'safe_center',
             'type' => 'json',
-            'ticket' => $ticket
+            'ticket' => $ticket,
         ];
         $uuid = false;
         $url = 'safe/safeqrconnect?lang=zh_CN';
@@ -89,11 +94,12 @@ class Client extends BaseClient
                 $uuid = $json->uuid;
             }
         }
+
         return $uuid;
     }
 
     /**
-     * 获取二维码图片
+     * 获取二维码图片.
      */
     public function getQrCode()
     {
@@ -107,7 +113,7 @@ class Client extends BaseClient
                 'action' => 'check',
                 'type' => 'msgs',
                 'msgid' => $msgid,
-            ]
+            ],
         ];
         $text = "https://mp.weixin.qq.com/safe/safeqrcode?ticket=$ticket&uuid=$uuid&action=check&type=msgs&msgid=$msgid";
         $qr = new QrCode();
@@ -120,6 +126,7 @@ class Client extends BaseClient
 
     /**
      * 检查二维码是否扫码
+     *
      * @param $uuid
      * @param $token
      */
@@ -134,9 +141,9 @@ class Client extends BaseClient
             'random' => $time,
             'uuid' => $uuid,
             'action' => 'json',
-            'type' => 'json'
+            'type' => 'json',
         ];
-        $url = 'safe/safeuuid?timespam=' . $time . '&lang=zh_CN';
+        $url = 'safe/safeuuid?timespam='.$time.'&lang=zh_CN';
         $res = $this->httpPost($url, $options);
         if ($res) {
             var_dump($res);

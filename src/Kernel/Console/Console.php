@@ -30,6 +30,6 @@ class Console
      */
     public static function isWin()
     {
-        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
+        return 'WIN' === strtoupper(substr(PHP_OS, 0, 3));
     }
 }

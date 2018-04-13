@@ -68,8 +68,7 @@ class BaseClient
      * GET request.
      *
      * @param string $url
-     * @param array $query
-     *
+     * @param array  $query
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -82,8 +81,7 @@ class BaseClient
      * POST request.
      *
      * @param string $url
-     * @param array $data
-     *
+     * @param array  $data
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -95,10 +93,9 @@ class BaseClient
     /**
      * JSON request.
      *
-     * @param string $url
+     * @param string       $url
      * @param string|array $data
-     * @param array $query
-     *
+     * @param array        $query
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -111,10 +108,9 @@ class BaseClient
      * Upload file.
      *
      * @param string $url
-     * @param array $files
-     * @param array $form
-     * @param array $query
-     *
+     * @param array  $files
+     * @param array  $form
+     * @param array  $query
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -139,8 +135,9 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array $options
-     * @param bool $returnRaw
+     * @param array  $options
+     * @param bool   $returnRaw
+     *
      * @return string
      */
     public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
@@ -159,14 +156,14 @@ class BaseClient
                 $this->token = $match[1];
             }
         }
+
         return $returnRaw ? $response : $response->getBody()->getContents();
     }
 
     /**
      * @param string $url
      * @param string $method
-     * @param array $options
-     *
+     * @param array  $options
      *
      * @return \JinWeChat\Kernel\Http\Response
      */
@@ -185,6 +182,7 @@ class BaseClient
         if (!($this->httpClient instanceof Client)) {
             $this->httpClient = $this->app['http_client'] ?? new Client();
         }
+
         return $this->httpClient;
     }
 
@@ -240,18 +238,20 @@ class BaseClient
     {
         list($s1, $s2) = explode(' ', microtime());
 
-        return (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
+        return (float) sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
     }
 
     /**
-     * 转换json
+     * 转换json.
+     *
      * @param $json
+     *
      * @return bool|string
      */
     public function jsonDecode($json)
     {
         $res = json_decode($json);
-        if (JSON_ERROR_NONE == json_last_error()) {
+        if (JSON_ERROR_NONE === json_last_error()) {
             return $res;
         } else {
             return false;
