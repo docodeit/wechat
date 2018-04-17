@@ -138,7 +138,7 @@ class Client extends BaseClient
             'action' => 'json',
             'type' => 'json',
         ];
-        $url = 'safe/safeuuid?timespam=' . $time . '&lang=zh_CN';
+        $url = 'safe/safeuuid?timespam='.$time.'&lang=zh_CN';
         $res = $this->httpPost($url, $options);
         if ($res) {
             var_dump($res);
@@ -146,17 +146,19 @@ class Client extends BaseClient
     }
 
     /**
-     * 群发图文
+     * 群发图文.
+     *
      * @param $uuid
      * @param $msgid
      * @param $appmsgid
+     *
      * @return string
      */
     public function mass($uuid, $msgid, $appmsgid)
     {
         $query = [
             't' => 'ajax-response',
-            'lang' => 'zh_CN'
+            'lang' => 'zh_CN',
         ];
         $data = [
             'token' => $this->token,
@@ -185,6 +187,7 @@ class Client extends BaseClient
             'direct_send' => '1',
             'code' => $uuid,
         ];
+
         return $this->httpPost('cgi-bin/masssend', $data, $query);
     }
 }

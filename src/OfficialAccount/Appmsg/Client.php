@@ -16,6 +16,7 @@ use JinWeChat\Kernel\BaseClient;
 class Client extends BaseClient
 {
     const URL = 'cgi-bin/appmsg';
+
     const EDIT_URL = 'cgi-bin/operate_appmsg';
 
     /**
@@ -25,7 +26,6 @@ class Client extends BaseClient
      * @param $count
      *
      * @return \Psr\Http\Message\ResponseInterface
-     *
      */
     public function list($begin = 0, $count = 10)
     {
@@ -44,10 +44,12 @@ class Client extends BaseClient
     }
 
     /**
-     * 素材列表
+     * 素材列表.
+     *
      * @param int $begin
      * @param int $count
      * @param int $type
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function appmsgList($begin = 0, $count = 10, $type = 10)
@@ -62,11 +64,13 @@ class Client extends BaseClient
             'token' => $this->token,
             'f' => 'json',
         ];
+
         return $this->httpGet(self::URL, $query);
     }
 
     /**
-     * 获取永久链接
+     * 获取永久链接.
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function getForeverUrl()
@@ -76,7 +80,7 @@ class Client extends BaseClient
             'token' => $this->token,
             'f' => 'json',
             'ajax' => '1',
-            'random' => (int)$this->getMillisecond(),
+            'random' => (int) $this->getMillisecond(),
             'action' => 'list_ex',
             'begin' => '0',
             'count' => '999',
@@ -84,12 +88,15 @@ class Client extends BaseClient
             'link' => '1',
             'scene' => '1',
         ];
+
         return $this->httpGet(self::URL, $query);
     }
 
     /**
-     * 获取预览链接
+     * 获取预览链接.
+     *
      * @param $appmsgid
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function getPreviewUrl($appmsgid)
@@ -103,6 +110,7 @@ class Client extends BaseClient
             'appmsgid' => $appmsgid,
             'itemidx' => '1',
         ];
+
         return $this->httpGet(self::URL, $query);
     }
 
@@ -115,48 +123,48 @@ class Client extends BaseClient
             'token' => $this->token,
             'lang' => 'zh_CN',
         ];
-        for ($i = 0; $i <= $count; $i++) {
+        for ($i = 0; $i <= $count; ++$i) {
             $list[] = [
-                'can_reward' . $i => '0',
-                'title' . $i => '',
-                'author' . $i => '1',
-                'fileid' . $i => '',
-                'digest' . $i => '1',
-                'content' . $i => '<p>1</p>',
-                'sourceurl' . $i => '',
-                'need_open_comment' . $i => '1',
-                'only_fans_can_comment' . $i => '0',
-                'cdn_url' . $i => '',
-                'cdn_url_back' . $i => '',
-                'music_id' . $i => '',
-                'video_id' . $i => '',
-                'voteid' . $i => '',
-                'voteismlt' . $i => '',
-                'supervoteid' . $i => '',
-                'cardid' . $i => '',
-                'cardquantity' . $i => '',
-                'cardlimit' . $i => '',
-                'vid_type' . $i => '',
-                'reward_money' . $i => '0',
-                'reward_wording' . $i => '',
-                'show_cover_pic' . $i => '0',
-                'shortvideofileid' . $i => '',
-                'copyright_type' . $i => '0',
-                'releasefirst' . $i => '',
-                'platform' . $i => '',
-                'reprint_permit_type' . $i => '',
-                'original_article_type' . $i => '',
-                'ori_white_list' . $i => '',
-                'free_content' . $i => '',
-                'fee' . $i => '0',
-                'ad_id' . $i => '',
-                'guide_words' . $i => '',
-                'is_share_copyright' . $i => '0',
-                'share_copyright_url' . $i => '',
-                'share_page_type' . $i => '0',
-                'share_imageinfo' . $i => '{"list":[]}',
-                'share_video_id' . $i => '',
-                'share_voice_id' . $i => '',
+                'can_reward'.$i => '0',
+                'title'.$i => '',
+                'author'.$i => '1',
+                'fileid'.$i => '',
+                'digest'.$i => '1',
+                'content'.$i => '<p>1</p>',
+                'sourceurl'.$i => '',
+                'need_open_comment'.$i => '1',
+                'only_fans_can_comment'.$i => '0',
+                'cdn_url'.$i => '',
+                'cdn_url_back'.$i => '',
+                'music_id'.$i => '',
+                'video_id'.$i => '',
+                'voteid'.$i => '',
+                'voteismlt'.$i => '',
+                'supervoteid'.$i => '',
+                'cardid'.$i => '',
+                'cardquantity'.$i => '',
+                'cardlimit'.$i => '',
+                'vid_type'.$i => '',
+                'reward_money'.$i => '0',
+                'reward_wording'.$i => '',
+                'show_cover_pic'.$i => '0',
+                'shortvideofileid'.$i => '',
+                'copyright_type'.$i => '0',
+                'releasefirst'.$i => '',
+                'platform'.$i => '',
+                'reprint_permit_type'.$i => '',
+                'original_article_type'.$i => '',
+                'ori_white_list'.$i => '',
+                'free_content'.$i => '',
+                'fee'.$i => '0',
+                'ad_id'.$i => '',
+                'guide_words'.$i => '',
+                'is_share_copyright'.$i => '0',
+                'share_copyright_url'.$i => '',
+                'share_page_type'.$i => '0',
+                'share_imageinfo'.$i => '{"list":[]}',
+                'share_video_id'.$i => '',
+                'share_voice_id'.$i => '',
             ];
         }
         $data = [
@@ -168,7 +176,7 @@ class Client extends BaseClient
             'AppMsgId' => '',
             'count' => $count,
             'data_seq' => '0',
-            'operate_from' => 'Chrome'
+            'operate_from' => 'Chrome',
         ];
         $this->httpPost(self::EDIT_URL, $data, $query);
     }
