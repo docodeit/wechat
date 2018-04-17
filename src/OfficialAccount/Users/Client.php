@@ -26,7 +26,6 @@ class Client extends BaseClient
     public function list($offset = 0, $limit = 10)
     {
         $query = [
-            'query' => [
                 'action' => 'get_user_list',
                 'limit' => $limit,
                 'offset' => $offset,
@@ -34,7 +33,6 @@ class Client extends BaseClient
                 'lang' => 'zh_CN',
                 'ajax' => '1',
                 'random' => $this->getMillisecond(),
-            ],
         ];
 
         return $this->httpGet('cgi-bin/user_tag', $query);

@@ -25,10 +25,8 @@ class Client extends BaseClient
     public function msgid()
     {
         $query = [
-            'query' => [
-                't' => 'mass/send',
-                'lang' => 'zh_CN',
-            ],
+            't' => 'mass/send',
+            'lang' => 'zh_CN',
         ];
         $url = 'cgi-bin/masssendpage';
         $res = $this->httpGet($url, $query);
@@ -107,18 +105,15 @@ class Client extends BaseClient
         $ticket = $this->ticket();
         $uuid = $this->uuid($ticket);
         $query = [
-            'query' => [
-                'ticket' => $ticket,
-                'uuid' => $uuid,
-                'action' => 'check',
-                'type' => 'msgs',
-                'msgid' => $msgid,
-            ],
+            'ticket' => $ticket,
+            'uuid' => $uuid,
+            'action' => 'check',
+            'type' => 'msgs',
+            'msgid' => $msgid,
         ];
         $text = "https://mp.weixin.qq.com/safe/safeqrcode?ticket=$ticket&uuid=$uuid&action=check&type=msgs&msgid=$msgid";
         $qr = new QrCode();
-//        $qr->show($text);
-        $qr->show('https://login.weixin.qq.com/qrcode/wYHHLQ9y5A==');
+        $qr->show($text);
         $url = 'safe/safeqrcode';
         $res = $this->httpGet($url, $query);
         file_put_contents('qr.jpg', $res);
@@ -143,10 +138,53 @@ class Client extends BaseClient
             'action' => 'json',
             'type' => 'json',
         ];
-        $url = 'safe/safeuuid?timespam='.$time.'&lang=zh_CN';
+        $url = 'safe/safeuuid?timespam=' . $time . '&lang=zh_CN';
         $res = $this->httpPost($url, $options);
         if ($res) {
             var_dump($res);
         }
+    }
+
+    /**
+     * 群发图文
+     * @param $uuid
+     * @param $msgid
+     * @param $appmsgid
+     * @return string
+     */
+    public function mass($uuid, $msgid, $appmsgid)
+    {
+        $query = [
+            't' => 'ajax-response',
+            'lang' => 'zh_CN'
+        ];
+        $data = [
+            'token' => $this->token,
+            'lang' => 'zh_CN',
+            'f' => 'json',
+            'ajax' => '1',
+            'random' => $this->getMillisecond(),
+            'smart_product' => '0',
+            'type' => '10',
+            'appmsgid' => $appmsgid,
+            'share_page' => '1',
+            'send_time' => '0',
+            'cardlimit' => '1',
+            'sex' => '0',
+            'groupid' => '-1',
+            'synctxweibo' => '0',
+            'need_open_comment' => '1',
+            'only_fans_can_comment' => '0',
+            'country' => '',
+            'province' => '',
+            'city' => '',
+            'imgcode' => '',
+            'operation_seq' => $msgid,
+            'req_id' => $this->getRandomStr(),
+            'req_time' => time(),
+            'direct_send' => '1',
+            'code' => $uuid,
+        ];
+        return $this->httpPost('cgi-bin/masssend', $data, $query);
     }
 }

@@ -68,34 +68,35 @@ class BaseClient
      * GET request.
      *
      * @param string $url
-     * @param array  $query
+     * @param array $query
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function httpGet(string $url, array $query = [])
     {
-        return $this->request($url, 'GET', $query);
+        return $this->request($url, 'GET', ['query' => $query]);
     }
 
     /**
      * POST request.
      *
      * @param string $url
-     * @param array  $data
+     * @param array $data
+     * @param array $query
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function httpPost(string $url, array $data = [])
+    public function httpPost(string $url, array $data = [], array $query = [])
     {
-        return $this->request($url, 'POST', ['form_params' => $data]);
+        return $this->request($url, 'POST', ['query' => $query, 'form_params' => $data]);
     }
 
     /**
      * JSON request.
      *
-     * @param string       $url
+     * @param string $url
      * @param string|array $data
-     * @param array        $query
+     * @param array $query
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -108,9 +109,9 @@ class BaseClient
      * Upload file.
      *
      * @param string $url
-     * @param array  $files
-     * @param array  $form
-     * @param array  $query
+     * @param array $files
+     * @param array $form
+     * @param array $query
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -135,8 +136,8 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array  $options
-     * @param bool   $returnRaw
+     * @param array $options
+     * @param bool $returnRaw
      *
      * @return string
      */
@@ -163,7 +164,7 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array  $options
+     * @param array $options
      *
      * @return \JinWeChat\Kernel\Http\Response
      */
@@ -234,11 +235,11 @@ class BaseClient
      *
      * @return float
      */
-    public function getMillisecond()
+    protected function getMillisecond()
     {
         list($s1, $s2) = explode(' ', microtime());
 
-        return (float) sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
+        return (float)sprintf('%.0f', (floatval($s1) + floatval($s2)) * 1000);
     }
 
     /**
@@ -248,13 +249,54 @@ class BaseClient
      *
      * @return bool|string
      */
-    public function jsonDecode($json)
+    protected function jsonDecode($json)
     {
         $res = json_decode($json);
         if (JSON_ERROR_NONE === json_last_error()) {
             return $res;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * 获取随机字符
+     * @param int $length
+     * @return string
+     */
+    protected function getRandomStr($length = 32)
+    {
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for ($randomStr = '', $i = 0; $i < $length; $i++) {
+            $randomStr .= substr($str, floor(lcg_value() * strlen($str)), 1);
+        }
+        return $randomStr;
+    }
+
+    /**
+     * 判断微信错误码返回
+     * @param $code
+     * @return string
+     */
+    protected function judgeCode($code)
+    {
+        switch ($code) {
+            case "0":
+                return "发送成功";
+            case "67014":
+                return "该时刻定时消息过多，请选择其他时刻";
+            case "67012":
+                return "设置失败，定时时间与已有互选广告订单时间冲突";
+            case "67013":
+                return "设置失败，定时时间超过卡券有效期";
+            case "200013":
+                return "操作频率过高，请明天再试";
+            case "64004":
+                return "剩余定时群发数量不足";
+            case "67011":
+                return "设置的定时群发时间错误，请重新选择";
+            default:
+                return "系统繁忙，请稍后再试";
         }
     }
 }
